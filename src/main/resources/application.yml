@@ -1,0 +1,26 @@
+application:
+  title: Bresaola
+  version: 0.0.1
+spring:
+  application:
+    name: Bresaola
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration
+  docker:
+    compose:
+      file: docker-compose.dev.yml
+      lifecycle-management: start_only
+  thymeleaf:
+    enabled: false
+  datasource:
+      username: grana
+      password: password!
+      url: jdbc:postgresql://localhost:5432/grana?useSSL=false&serverTimezone=Europe
+      driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+server:
+  servlet:
+    context-path: /bresaola/api

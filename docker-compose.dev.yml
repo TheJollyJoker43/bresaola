@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:14.8
+    container_name: grana-db
+    environment:
+      - POSTGRES_DB=grana
+      - POSTGRES_PASSWORD=password!
+      - POSTGRES_USER=grana
+    ports:
+      - '5432:5432'
