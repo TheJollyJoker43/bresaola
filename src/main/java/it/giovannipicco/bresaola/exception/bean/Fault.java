@@ -15,6 +15,5 @@ public class Fault {
     private String faultKey;
     private String faultMessage;
     private String faultLevel;
-    private String origin;
     private List<String> invalidFields;
 }

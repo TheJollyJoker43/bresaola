@@ -4,7 +4,6 @@ import it.giovannipicco.bresaola.exception.bean.BusinessException;
 import it.giovannipicco.bresaola.exception.bean.FatalException;
 import it.giovannipicco.bresaola.exception.bean.SystemException;
 import it.giovannipicco.bresaola.exception.bean.ValidationException;
-import it.giovannipicco.bresaola.utils.constant.Origin;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.MessageSource;
@@ -51,14 +50,14 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleException(Exception ex) {
         log.error(ex);
-        FatalException exception = (FatalException) ExceptionFactory.create(ExceptionType.UNMANAGED_ERROR, ex, Origin.COMMON);
+        FatalException exception = (FatalException) ExceptionFactory.create(ExceptionType.UNMANAGED_ERROR, ex);
         return ResponseEntity.status(exception.getHttpStatus()).body(exception.getFaultInfo());
     }
 
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         log.error(ex);
-        ValidationException exception = (ValidationException) ExceptionFactory.create(ExceptionType.INVALID_REQUEST, ex, Origin.COMMON);
+        ValidationException exception = (ValidationException) ExceptionFactory.create(ExceptionType.INVALID_REQUEST, ex);
         return ResponseEntity.status(exception.getHttpStatus()).body(exception.getFaultInfo());
     }
 
